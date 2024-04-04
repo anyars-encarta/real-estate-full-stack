@@ -9,7 +9,7 @@ const Navbar = () => {
   const ref = useRef();
   MenuCloser(ref, () => setOpen(false));
 
-  const user = true;
+  const user = false;
 
   return (
     <nav>
@@ -38,8 +38,8 @@ const Navbar = () => {
           </div>
         ) : (
           <>
-            <Link to='/'>Sign in</Link>
-            <Link to='/' className='signup'>Sign up</Link>
+            <Link to='/login'>Sign in</Link>
+            <Link to='/register' className='signup'>Sign up</Link>
           </>
         )}
 
