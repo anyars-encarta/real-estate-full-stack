@@ -52,8 +52,8 @@ const Navbar = () => {
           <Link to='/' onClick={() => setOpen(false)}>About</Link>
           <Link to='/' onClick={() => setOpen(false)}>Contact</Link>
           <Link to='/' onClick={() => setOpen(false)}>Agents</Link>
-          <Link to='/' onClick={() => setOpen(false)}>Sign in</Link>
-          <Link to='/' onClick={() => setOpen(false)}>Sign up</Link>
+          <Link to='/login' onClick={() => setOpen(false)}>Sign in</Link>
+          <Link to='/register' onClick={() => setOpen(false)}>Sign up</Link>
         </div>
       </div>
     </nav>
