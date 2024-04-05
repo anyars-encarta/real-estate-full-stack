@@ -37,7 +37,7 @@ const Register = () => {
                     <input name="username" type="text" placeholder="Username" />
                     <input name="email" type="text" placeholder="Email" />
                     <input name="password" type="password" placeholder="Password" />
-                    <button>Register</button>
+                    <button type='submit'>Register</button>
                     {error && <span>{error}</span>}
                     <Link to="/login">Do you have an account?</Link>
                 </form>
