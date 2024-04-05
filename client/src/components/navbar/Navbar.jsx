@@ -9,7 +9,7 @@ const Navbar = () => {
   const ref = useRef();
   MenuCloser(ref, () => setOpen(false));
 
-  const user = false;
+  const user = true;
 
   return (
     <nav>
