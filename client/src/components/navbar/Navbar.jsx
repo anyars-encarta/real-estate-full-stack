@@ -8,7 +8,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
   MenuCloser(ref, () => setOpen(false));
-
+ 
   const user = true;
 
   return (

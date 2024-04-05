@@ -1,15 +1,20 @@
 import React, { useState} from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import apiRequest from '../../lib/apiRequest';
+
 import './register.scss';
 
 const Register = () => {
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setLoading(true);
+        setError('')
         const formData = new FormData(e.target);
 
         const username = formData.get("username");
@@ -17,7 +22,7 @@ const Register = () => {
         const password = formData.get("password");
 
         try {
-            const response = await axios.post('http://localhost:8800/api/auth/register', {
+            const response = await apiRequest.post('/auth/register', {
             username, email, password
         })
             
@@ -26,6 +31,8 @@ const Register = () => {
         } catch(e) {
             console.log('There was an error', e)
             setError(e.response.data.message)
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -34,10 +41,10 @@ const Register = () => {
             <div className="formContainer">
                 <form onSubmit={handleSubmit}>
                     <h1>Create an Account</h1>
-                    <input name="username" type="text" placeholder="Username" />
-                    <input name="email" type="text" placeholder="Email" />
-                    <input name="password" type="password" placeholder="Password" />
-                    <button type='submit'>Register</button>
+                    <input name="username" required minLength={3} maxLength={20} type="text" placeholder="Username" />
+                    <input name="email" required type="text" placeholder="Email" />
+                    <input name="password" required minLength={6} type="password" placeholder="Password" />
+                    <button type='submit' disabled={loading}>Register</button>
                     {error && <span>{error}</span>}
                     <Link to="/login">Do you have an account?</Link>
                 </form>
