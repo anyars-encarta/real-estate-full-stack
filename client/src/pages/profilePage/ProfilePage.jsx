@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import './profilePage.scss';
 import List from '../../components/list/List';
@@ -27,7 +27,9 @@ const ProfilePage = () => {
                 <div className="wrapper">
                     <div className="userTitle">
                         <h1>User Information</h1>
-                        <button>Update Profile</button>
+                        <Link to={'/profile/update'}>
+                            <button>Update Profile</button>
+                        </Link>
                     </div>
                     <div className="userInfo">
                         <span>Avatar: <img src={currentUser.avatar || '/noavatar.jpg'} alt="user" /></span>
