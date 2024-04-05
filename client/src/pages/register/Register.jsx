@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from '../../lib/apiRequest';
 
@@ -23,12 +23,12 @@ const Register = () => {
 
         try {
             const response = await apiRequest.post('/auth/register', {
-            username, email, password
-        })
-            
-        navigate('/login');
+                username, email, password
+            })
 
-        } catch(e) {
+            navigate('/login');
+
+        } catch (e) {
             console.log('There was an error', e)
             setError(e.response.data.message)
         } finally {

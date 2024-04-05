@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MenuCloser from '../MenuCloser';
 import './navbar.scss';
+import { AuthContext } from '../../context/AuthContext';
 
 
 const Navbar = () => {
@@ -9,7 +10,7 @@ const Navbar = () => {
   const ref = useRef();
   MenuCloser(ref, () => setOpen(false));
  
-  const user = true;
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <nav>
@@ -25,11 +26,11 @@ const Navbar = () => {
       </div>
 
       <div className="right">
-        {user ? (
+        {currentUser ? (
           <div className='user'>
             <Link to='/profile' className='profileImg'>
-              <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="user" />
-              <span className='userText'>Anyars Encarta</span>
+              <img src={currentUser.avatar || '/noavatar.jpg'} alt="user" />
+              <span className='userText'>{currentUser.username}</span>
             </Link>
             <Link to='/profile' className='profile'>
               <div className="notification">3</div>

@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './profilePage.scss';
 import List from '../../components/list/List';
 import Chat from '../../components/chat/Chat';
 import apiRequest from '../../lib/apiRequest';
+import { AuthContext } from '../../context/AuthContext';
 
 const ProfilePage = () => {
     const navigate = useNavigate();
+    const { currentUser } = useContext(AuthContext);
 
     const handleLogOut = async () => {
         try {
@@ -28,9 +30,9 @@ const ProfilePage = () => {
                         <button>Update Profile</button>
                     </div>
                     <div className="userInfo">
-                        <span>Avatar: <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="user" /></span>
-                        <span>Username: <b>Anyars Encarta</b></span>
-                        <span>E-mail: <b>anyarsencarta@gmail.com</b></span>
+                        <span>Avatar: <img src={currentUser.avatar || '/noavatar.jpg'} alt="user" /></span>
+                        <span>Username: <b>{currentUser.username}</b></span>
+                        <span>E-mail: <b>{currentUser.email}</b></span>
                         <button onClick={handleLogOut}>Logout</button>
                     </div>
                     <div className="userTitle">
