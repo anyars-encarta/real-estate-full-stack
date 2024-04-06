@@ -1,25 +1,58 @@
 {
-  "hash": "59fbcd60",
-  "configHash": "3eef7c6e",
-  "lockfileHash": "7f4c23d9",
-  "browserHash": "a03f49bc",
+  "hash": "08e91ce4",
+  "configHash": "22b0d8a7",
+  "lockfileHash": "e7c2f26a",
+  "browserHash": "610a55c8",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "51e87970",
+      "fileHash": "6c0c584e",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "05742a1e",
+      "fileHash": "2259bf7d",
       "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "b51a7cca",
+      "needsInterop": false
+    },
+    "react-router": {
+      "src": "../../node_modules/react-router/dist/index.js",
+      "file": "react-router.js",
+      "fileHash": "50fc49c5",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "d6bc16da",
+      "needsInterop": false
+    },
+    "react-leaflet": {
+      "src": "../../node_modules/react-leaflet/lib/index.js",
+      "file": "react-leaflet.js",
+      "fileHash": "eed47a8c",
+      "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-XFZ2DVVZ": {
-      "file": "chunk-XFZ2DVVZ.js"
+    "chunk-M5BBXT4J": {
+      "file": "chunk-M5BBXT4J.js"
+    },
+    "chunk-PXJLUKTU": {
+      "file": "chunk-PXJLUKTU.js"
+    },
+    "chunk-FQO5W7GE": {
+      "file": "chunk-FQO5W7GE.js"
+    },
+    "chunk-ZS7NZCD4": {
+      "file": "chunk-ZS7NZCD4.js"
     }
   }
 }
