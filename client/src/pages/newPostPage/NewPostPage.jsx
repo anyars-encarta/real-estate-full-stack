@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import apiRequest from '../../lib/apiRequest';
-// import { AuthContext } from '../../context/AuthContext';
 import UploadWidget from '../../components/uploadWidget/UploadWidget';
 
 import "./newPostPage.scss";
@@ -54,7 +53,7 @@ const NewPostPage = () => {
             navigate('/' + response.data.id);
 
         } catch (e) {
-                setError(e);
+                setError(e.response.data.message);
                 setLoading(false);
         }
     };
