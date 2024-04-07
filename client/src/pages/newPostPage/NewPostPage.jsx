@@ -51,9 +51,6 @@ const NewPostPage = () => {
                 },
             });
 
-            console.log('I want to get the data response here')
-            console.log('Testing the data:', response.data)
-
             navigate('/' + response.data.id);
 
         } catch (e) {
