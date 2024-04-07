@@ -28,7 +28,7 @@ const ProfileUpdatePage = () => {
         
         try {
             const response = await apiRequest.put(`/users/${currentUser.id}`, {
-                username, email, password, avatar: avatar[0],
+                username, email, password, avatar:avatar[0]
             })
             updateUser(response.data);
             navigate('/profile');
@@ -39,7 +39,7 @@ const ProfileUpdatePage = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
 
     return (
