@@ -28,8 +28,6 @@ const Login = () => {
         username, password,
       });
 
-      console.log('Wanted to check the data response', response.data);
-
       updateUser(response.data);
 
       navigate('/')

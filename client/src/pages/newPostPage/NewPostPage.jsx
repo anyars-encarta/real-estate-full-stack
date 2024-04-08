@@ -50,6 +50,8 @@ const NewPostPage = () => {
                 },
             });
 
+            console.log(response.data)
+            
             navigate('/' + response.data.id);
 
         } catch (e) {
