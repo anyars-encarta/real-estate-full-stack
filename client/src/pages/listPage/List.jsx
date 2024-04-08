@@ -1,12 +1,13 @@
 import React from 'react';
 import './list.scss';
-import { listData } from '../../lib/dummyData';
+// import { listData } from '../../lib/dummyData';
 import Filter from '../../components/filter/Filter';
 import Card from '../../components/card/Card';
 import Map from '../../components/map/Map';
+import { useLoaderData } from 'react-router';
 
 const List = () => {
-  const data = listData;
+  const posts = useLoaderData()
 
   return (
     <div className='listPage'>
@@ -14,7 +15,7 @@ const List = () => {
         <Filter />
         <div className="wrapper">
           {
-            data.map((dataItem) => (
+            posts.map((dataItem) => (
               <Card key={dataItem.id} item={dataItem} />
             ))
           }
@@ -22,7 +23,7 @@ const List = () => {
       </div>
 
       <div className="mapContainer">
-        <Map items={data} />
+        <Map items={posts} />
       </div>
     </div>
   )

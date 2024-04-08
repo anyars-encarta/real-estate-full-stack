@@ -10,7 +10,7 @@ import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import ProfileUpdatePage from './pages/profileUpdatePage/ProfileUpdatePage';
 import NewPostPage from './pages/newPostPage/NewPostPage';
-import { singlePageLoader } from './lib/loaders';
+import { listPageLoader, singlePageLoader } from './lib/loaders';
 
 const App = () => {
 
@@ -25,7 +25,8 @@ const App = () => {
         },
         {
           path: '/list',
-          element: <List />
+          element: <List />,
+          loader: listPageLoader
         },
         {
           path: '/:id',

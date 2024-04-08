@@ -5,3 +5,10 @@ export const singlePageLoader = async ({ request, params }) => {
 
     return response.data;
 }
+
+export const listPageLoader = async ({ request, params }) => {
+    const query = request.url.split('?')[1]
+    const response = await apiRequest('/posts?' + query)
+
+    return response.data;
+}
