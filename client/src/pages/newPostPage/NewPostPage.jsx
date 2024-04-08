@@ -50,8 +50,6 @@ const NewPostPage = () => {
                 },
             });
 
-            console.log(response.data)
-            
             navigate('/' + response.data.id);
 
         } catch (e) {
@@ -160,7 +158,7 @@ const NewPostPage = () => {
                             <label htmlFor="restaurant">Restaurant</label>
                             <input min={0} id="restaurant" name="restaurant" type="number" />
                         </div>
-                        <button className="sendButton" type='submit'>Add</button>
+                        <button className="sendButton" type='submit' disabled={loading}>Add</button>
                         {error && <span>{error}</span>}
                     </form>
                 </div>
