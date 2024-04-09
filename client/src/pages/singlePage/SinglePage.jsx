@@ -15,15 +15,15 @@ const SinglePage = () => {
   const navigate = useNavigate();
 
   const handleSave = async () => {
+    if(!currentUser) {
+      navigate("/login");
+    }
+
     // AFTER REACT 19 UPDTATE TO useOptimistic() HOOK
     setSaved((prev) => !prev);
 
-    if(!currentUser) {
-      navigate('/login')
-    };
-
     try {
-      await apiRequest.post('/users/save', { postId: post.id });
+      await apiRequest.post("/users/save", { postId: post.id });
     } catch (e) {
       console.log(e)
       setSaved((prev) => !prev);

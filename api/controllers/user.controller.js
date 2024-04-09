@@ -99,7 +99,7 @@ export const savePost = async (req, res) => {
                     id: savedPost.id,
                 },
             });
-
+            
             res.status(200).json({ message: 'Post removed successfully!'})
         } else {
             await prisma.savedPost.create({
@@ -108,7 +108,7 @@ export const savePost = async (req, res) => {
                     postId,
                 },
             });
-
+            
             res.status(200).json({ message: 'Post saved successfully!'})
         }
 
