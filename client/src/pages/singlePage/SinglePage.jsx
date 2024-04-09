@@ -1,14 +1,34 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './singlePage.scss';
 import Slider from '../../components/slider/Slider';
 import Map from '../../components/map/Map';
 import { useLoaderData } from 'react-router';
 import DOMPurify from 'dompurify';
+import { AuthContext } from '../../context/AuthContext';
+import apiRequest from '../../lib/apiRequest.js';
 
 const SinglePage = () => {
-
   const post = useLoaderData();
-  console.log(post);
+  const [saved, setSaved] = useState(post.isSaved)
+  const { currentUser } = useContext(AuthContext)
+  const navigate = useNavigate();
+
+  const handleSave = async () => {
+    // AFTER REACT 19 UPDTATE TO useOptimistic() HOOK
+    setSaved((prev) => !prev);
+
+    if(!currentUser) {
+      navigate('/login')
+    };
+
+    try {
+      await apiRequest.post('/users/save', { postId: post.id });
+    } catch (e) {
+      console.log(e)
+      setSaved((prev) => !prev);
+    }
+  };
 
   return (
     <div className='singlePage'>
@@ -127,9 +147,9 @@ const SinglePage = () => {
               Send a Message
             </button>
 
-            <button>
+            <button onClick={handleSave} style={{backgroundColor: saved ? '#fece51' : 'white'}}>
               <img src="/save.png" alt="" />
-              Save the Place
+              {saved ? 'Place Saved' : 'Save the Place'}
             </button>
           </div>
         </div>
