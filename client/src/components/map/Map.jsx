@@ -3,10 +3,10 @@ import { MapContainer, TileLayer } from 'react-leaflet';
 import './map.scss';
 import 'leaflet/dist/leaflet.css';
 import Pin from '../pin/Pin';
-import { useLoaderData } from 'react-router';
+// import { useLoaderData } from 'react-router';
 
 const Map = ({ items }) => {
-    const post = useLoaderData();
+    // const post = useLoaderData();
 
     return (
         <MapContainer center={

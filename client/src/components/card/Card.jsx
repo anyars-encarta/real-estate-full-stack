@@ -3,10 +3,11 @@ import './card.scss';
 import { Link } from 'react-router-dom';
 
 const Card = ({ item }) => {
+    
     return (
         <div className='card'>
             <Link to={`/${item.id}`} className='imageContainer'>
-                <img src={item.img} alt={item.title} />
+                <img src={item.images[0]} alt={item.title} />
             </Link>
             <div className="textContainer">
                 <h2 className='title'>
@@ -24,12 +25,12 @@ const Card = ({ item }) => {
                     <div className="features">
                         <div className="feature">
                             <img src="/bed.png" alt="" />
-                            <span>{item.bedroom} {item.bedroom > 1 ? 'bedrooms' : 'bedroom'}</span>
+                            <span>{item.bedroom} bedroom</span>
                         </div>
 
                         <div className="feature">
                             <img src="/bath.png" alt="" />
-                            <span>{item.bathroom} {item.bathroom > 1 ? 'bathrooms' : 'bathroom'}</span>
+                            <span>{item.bathroom} bathroom</span>
                         </div>
                     </div>
                     <div className="icons">
