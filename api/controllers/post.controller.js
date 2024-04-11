@@ -45,7 +45,7 @@ export const getPost = async (req, res) => {
             },
         });
 
-        const token = req.cookie?.token;
+        const token = req.cookies?.token;
 
         if (token) {
             jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {

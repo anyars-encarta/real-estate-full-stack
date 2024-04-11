@@ -22,6 +22,8 @@ const SinglePage = () => {
     // AFTER REACT 19 UPDTATE TO useOptimistic() HOOK
     setSaved((prev) => !prev);
 
+    console.log('The saved status is: ', saved);
+    
     try {
       await apiRequest.post("/users/save", { postId: post.id });
     } catch (e) {
