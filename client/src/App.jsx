@@ -10,7 +10,7 @@ import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import ProfileUpdatePage from './pages/profileUpdatePage/ProfileUpdatePage';
 import NewPostPage from './pages/newPostPage/NewPostPage';
-import { listPageLoader, singlePageLoader } from './lib/loaders';
+import { listPageLoader, singlePageLoader, profilePageLoader } from './lib/loaders';
 
 const App = () => {
 
@@ -50,7 +50,8 @@ const App = () => {
       children: [
         {
           path: '/profile',
-          element: <ProfilePage />
+          element: <ProfilePage />,
+          loader: profilePageLoader,
         },
         {
           path: '/profile/update',
