@@ -14,7 +14,6 @@ const Chat = ({ chats }) => {
         try {
             const response = await apiRequest('/chats/' + id);
             setChat({ ...response.data, receiver });
-
         } catch (e) {
             console.log(e);
         }
@@ -42,84 +41,24 @@ const Chat = ({ chats }) => {
                 <div className="chatBox">
                     <div className="chatTop">
                         <div className="chatUser">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            Anyars Encarta
+                            <img src={chat.receiver.avatar || '/noavatar.jpg'} alt="" />
+                            {chat.receiver.username}
                         </div>
                         <div className="chatClose" onClick={() => setChat(false)}>
                             <img src="/close.png" alt="" />
                         </div>
                     </div>
                     <div className="chatCenter">
-                        <div className="chatMessage">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
+                        {chat.messages.map(message => (
+                            <div className="chatMessage own" key={message.id}>
+                                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                                <div className="chatText">
+                                    <p>{message.text}</p>
+                                    <span>1 hour ago</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="chatMessage">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage own">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage own">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage own">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage own">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage own">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
-                        <div className="chatMessage own">
-                            <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                            <div className="chatText">
-                                <p>Lorem ipsum dolor sit, amet consectetur.</p>
-                                <span>1 hour ago</span>
-                            </div>
-                        </div>
+                        ))}
+
                     </div>
                     <div className="chatBottom">
                         <textarea name="message" id="message" cols="30" rows="10" />
