@@ -1,16 +1,15 @@
 import React, { useContext, useState } from 'react';
+import { format } from 'timeago.js';
+
 import './chat.scss';
 import { AuthContext } from '../../context/AuthContext';
 import apiRequest from '../../lib/apiRequest';
 
 const Chat = ({ chats }) => {
     const [chat, setChat] = useState(null);
-    const { currentUser } = useContext(AuthContext)
-
-    console.log(chats)
+    const { currentUser } = useContext(AuthContext);
 
     const handleOpenChat = async (id, receiver) => {
-
         try {
             const response = await apiRequest('/chats/' + id);
             setChat({ ...response.data, receiver });
@@ -51,10 +50,10 @@ const Chat = ({ chats }) => {
                     <div className="chatCenter">
                         {chat.messages.map(message => (
                             <div className="chatMessage own" key={message.id}>
-                                <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                                <img src={chat.receiver.avatar || '/noavatar.jpg'} alt="" />
                                 <div className="chatText">
                                     <p>{message.text}</p>
-                                    <span>1 hour ago</span>
+                                    <span>{format(message.createdAt)}</span>
                                 </div>
                             </div>
                         ))}
