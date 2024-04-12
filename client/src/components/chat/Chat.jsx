@@ -18,6 +18,22 @@ const Chat = ({ chats }) => {
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const text = formData.get('message');
+
+        if (!text) return;
+        try {
+            const response = await apiRequest.post('/messages/' + chat.id, { text });
+            setChat(prev => ({ ...prev, messages: [...prev.messages, response.data] }));
+            e.target.reset();
+        } catch (err) {
+            console.log(err)
+        }
+    };
+
     return (
         <div className='chat'>
             <div className="messages">
@@ -64,10 +80,10 @@ const Chat = ({ chats }) => {
                         ))}
 
                     </div>
-                    <div className="chatBottom">
+                    <form onSubmit={handleSubmit} className="chatBottom">
                         <textarea name="message" id="message" cols="30" rows="10" />
-                        <button>Send</button>
-                    </div>
+                        <button type='subnit'>Send</button>
+                    </form>
                 </div>
             ) : (
                 <div className='startChat'>Click on a chat to Start Chatting</div>
