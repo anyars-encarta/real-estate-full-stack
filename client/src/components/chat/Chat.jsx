@@ -49,8 +49,13 @@ const Chat = ({ chats }) => {
                     </div>
                     <div className="chatCenter">
                         {chat.messages.map(message => (
-                            <div className="chatMessage own" key={message.id}>
-                                <img src={chat.receiver.avatar || '/noavatar.jpg'} alt="" />
+                            <div className={message.userId === currentUser.id ? "chatMessage own" : "chatMessage"}
+                                // style={{
+                                //     alignSelf: message.userId === currentUser.id ? 'flex-end' : 'flex-start',
+                                //     textAlign: message.userId === currentUser.id ? 'right' : 'left'
+                                // }}
+                                key={message.id}>
+                                <img src={message.userId === currentUser.id ? chat.receiver.avatar || '/noavatar.jpg' : '/noavatar.jpg'} alt="" />
                                 <div className="chatText">
                                     <p>{message.text}</p>
                                     <span>{format(message.createdAt)}</span>
