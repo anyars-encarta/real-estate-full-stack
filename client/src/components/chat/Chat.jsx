@@ -1,87 +1,51 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './chat.scss';
+import { AuthContext } from '../../context/AuthContext';
+import apiRequest from '../../lib/apiRequest';
 
-const Chat = () => {
-    const [chatOpen, setChatOpen] = useState(false);
+const Chat = ({ chats }) => {
+    const [chat, setChat] = useState(null);
+    const { currentUser } = useContext(AuthContext)
 
-    const handleOpenChat = () => {
-        setChatOpen(true)
+    console.log(chats)
+
+    const handleOpenChat = async (id, receiver) => {
+
+        try {
+            const response = await apiRequest('/chats/' + id);
+            setChat({ ...response.data, receiver });
+
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     return (
         <div className='chat'>
             <div className="messages">
                 <h1>Messages</h1>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
-                <div className="message" onClick={() => handleOpenChat()}>
-                    <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
-                    <span>Anyars Encarta</span>
-                    <p>Lorem ipsum dolor, sit amet...</p>
-                </div>
+                {chats?.map((c) => (
+                    <div
+                        className="message"
+                        key={c.id}
+                        style={{ backgroundColor: c.seenBy.includes(currentUser.id) ? 'white' : '#fecd514e' }}
+                        onClick={() => handleOpenChat(c.id, c.receiver)}
+                    >
+                        <img src={c.receiver.avatar || '/noavatar.jpg'} alt={c.receiver.username} />
+                        <span>{c.receiver.username}</span>
+                        <p>{c.lastMessage}</p>
+                    </div>
+                ))}
             </div>
 
-            {chatOpen ? (
+            {chat ? (
                 <div className="chatBox">
                     <div className="chatTop">
                         <div className="chatUser">
                             <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
                             Anyars Encarta
                         </div>
-                        <div className="chatClose" onClick={() => setChatOpen(false)}>
+                        <div className="chatClose" onClick={() => setChat(false)}>
                             <img src="/close.png" alt="" />
                         </div>
                     </div>
