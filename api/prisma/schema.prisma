@@ -89,4 +89,15 @@ model Chat {
   userIDs String[] @db.ObjectId
   createdAt DateTime @default(now())
   seenBy String[] @db.ObjectId
+  messages Message[]
+  lastMessage String?
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  text String
+  userId String
+  chat Chat @relation(fields: [chatId], references: [id])
+  chatId String @db.ObjectId
+  createdAt DateTime @default(now())
 }
