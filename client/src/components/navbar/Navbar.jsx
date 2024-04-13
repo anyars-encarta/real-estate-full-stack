@@ -3,14 +3,20 @@ import { Link } from 'react-router-dom';
 import MenuCloser from '../MenuCloser';
 import './navbar.scss';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotificationStore } from '../../lib/notificationStore';
 
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const ref = useRef();
   MenuCloser(ref, () => setOpen(false));
- 
+
   const { currentUser } = useContext(AuthContext);
+
+  const fetch = useNotificationStore((state) => state.fetch);
+  const number = useNotificationStore((state) => state.number);
+
+  if (currentUser) fetch();
 
   return (
     <nav>
@@ -33,7 +39,7 @@ const Navbar = () => {
               <span className='userText'>{currentUser.username}</span>
             </Link>
             <Link to='/profile' className='profile'>
-              <div className="notification">3</div>
+              {number > 0 && <div className="notification">{number}</div>}
               <span>Profile</span>
             </Link>
           </div>
