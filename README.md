@@ -4,7 +4,7 @@
 
  <!-- LOGO -->
 
-  <img src="/readme.PNG" alt="logo" width="160"  height="auto" />
+  <img src="./assets/readme.png" alt="logo" width="160"  height="auto" />
   <br/>
 
 <!-- MAIN HEADING -->
