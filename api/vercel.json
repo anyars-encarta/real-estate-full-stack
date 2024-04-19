@@ -3,7 +3,7 @@
     "rewrites": [
         {
             "source": "/(.*)",
-            "destination": "/api"
+            "destination": "/"
         }
     ],
     "builds": [
@@ -15,7 +15,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api"
+            "dest": "/"
         }
     ]
 }
