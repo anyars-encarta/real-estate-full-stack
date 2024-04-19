@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send('Hello World')
+    res.send(`✅ Server is running on port ${PORT}!`)
 })
 
 app.use('/api/auth', authRoute)
