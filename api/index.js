@@ -28,7 +28,7 @@ app.use('/api/chats', chatRoute);
 app.use('/api/messages', messageRoute);
 
 app.get('/api', (req, res) => {
-    res.send(`✅ Server is running on port ${PORT}!`);
+    res.send(`✅✅✅ Server is running on port ${PORT}!`);
 })
 
 app.listen(PORT, () => console.log(`✅ Server is running on port ${PORT}! Hurrah!!`));
