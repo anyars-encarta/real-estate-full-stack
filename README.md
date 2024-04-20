@@ -83,7 +83,7 @@
 
 LIVE DEMO
 
-> Live demo coming soon...
+> Visit the [live](https://real-estate-anyars.vercel.app/) version of the project here.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
