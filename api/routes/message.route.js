@@ -1,9 +1,9 @@
-const express = require('express');
-const addMessage = require('../controllers/message.controller.js');
-const verifyToken = require('../middleware/verifyToken.js');
+import express from 'express';
+import { addMessage } from '../controllers/message.controller.js';
+import { verifyToken } from '../middleware/verifyToken.js';
 
 const messageRoute = express.Router();
 
 messageRoute.post('/:chatId', verifyToken, addMessage);
 
-module.exports = messageRoute;
+export default messageRoute;

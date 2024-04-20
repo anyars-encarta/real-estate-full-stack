@@ -1,6 +1,6 @@
-const express = require('express');
-const { shouldBeAdmin, shouldBeLoggedIn } = require('../controllers/test.controller.js');
-const verifyToken = require('../middleware/verifyToken.js');
+import express from 'express';
+import { shouldBeAdmin, shouldBeLoggedIn } from '../controllers/test.controller.js';
+import { verifyToken } from '../middleware/verifyToken.js';
 
 const testRoute = express.Router();
 
@@ -8,4 +8,4 @@ testRoute.get('/should-be-logged-in', verifyToken, shouldBeLoggedIn);
 
 testRoute.get('/should-be-admin', shouldBeAdmin);
 
-module.exports = testRoute;
+export default testRoute;

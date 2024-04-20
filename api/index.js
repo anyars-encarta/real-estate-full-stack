@@ -1,15 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
-const authRoute = require('./routes/auth.route.js');
-const postRoute = require('./routes/post.route.js');
-const testRoute = require('./routes/test.route.js');
+import authRoute from './routes/auth.route.js';
+import postRoute from './routes/post.route.js';
+import testRoute from './routes/test.route.js';
 
-const userRoute = require('./routes/user.route.js');
+import userRoute from './routes/user.route.js';
 
-const chatRoute = require('./routes/chat.route.js');
-const messageRoute = require('./routes/message.route.js');
+import chatRoute from './routes/chat.route.js';
+import messageRoute from './routes/message.route.js';
 
 const app = express();
 const PORT = 8800;

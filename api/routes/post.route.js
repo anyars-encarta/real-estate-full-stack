@@ -1,6 +1,6 @@
-const express = require('express');
-const { getPosts, getPost, addPost, updatePost, deletePost } = require('../controllers/post.controller.js');
-const  verifyToken  = require('../middleware/verifyToken.js');
+import express from 'express';
+import { getPosts, getPost, addPost, updatePost, deletePost } from '../controllers/post.controller.js';
+import  { verifyToken }  from '../middleware/verifyToken.js';
 
 const postRoute = express.Router();
 
@@ -13,4 +13,4 @@ postRoute.put('/:id', verifyToken, updatePost)
 
 postRoute.delete('/:id', verifyToken, deletePost)
 
-module.exports = postRoute;
+export default postRoute;
