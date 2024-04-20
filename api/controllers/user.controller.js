@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
-import prisma from "../lib/prisma.js";
+const bcrypt = require('bcrypt');
+const prisma = require("../lib/prisma.js");
 
-export const getUsers = async (req, res) => {
+const getUsers = async (req, res) => {
     console.log('It works')
     try {
         const users = await prisma.user.findMany();
@@ -12,7 +12,7 @@ export const getUsers = async (req, res) => {
     };
 };
 
-export const getUser = async (req, res) => {
+const getUser = async (req, res) => {
     const id = req.params.id
     try {
         const user = await prisma.user.findUnique({
@@ -26,7 +26,7 @@ export const getUser = async (req, res) => {
 };
 
 
-export const updateUser = async (req, res) => {
+const updateUser = async (req, res) => {
     const id = req.params.id;
     const tokenUserId = req.userId;
     const { password, avatar, ...inputs } = req.body;
@@ -59,7 +59,7 @@ export const updateUser = async (req, res) => {
 };
 
 
-export const deleteUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     const id = req.params.id;
     const tokenUserId = req.userId;
 
@@ -79,7 +79,7 @@ export const deleteUser = async (req, res) => {
     };
 };
 
-export const savePost = async (req, res) => {
+const savePost = async (req, res) => {
     const postId = req.body.postId;
     const tokenUserId = req.userId;
 
@@ -118,7 +118,7 @@ export const savePost = async (req, res) => {
     }
 };
 
-export const profilePosts = async (req, res) => {
+const profilePosts = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
@@ -142,7 +142,7 @@ export const profilePosts = async (req, res) => {
     };
 };
 
-export const getNotificationNumber = async (req, res) => {
+const getNotificationNumber = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
@@ -165,3 +165,5 @@ export const getNotificationNumber = async (req, res) => {
         res.status(500).json({ message: 'Failed to get notifications!' })
     };
 };
+
+module.exports = { getUsers, getUser, updateUser, deleteUser, savePost, profilePosts, getNotificationNumber }

@@ -1,7 +1,7 @@
-import prisma from '../lib/prisma.js';
-import jwt from 'jsonwebtoken';
+const prisma = require('../lib/prisma.js');
+const jwt = require('jsonwebtoken');
 
-export const getPosts = async (req, res) => {
+const getPosts = async (req, res) => {
     const query = req.query;
     
     try {
@@ -28,7 +28,7 @@ export const getPosts = async (req, res) => {
 };
 
 
-export const getPost = async (req, res) => {
+const getPost = async (req, res) => {
     const id = req.params.id
 
     try {
@@ -72,7 +72,7 @@ export const getPost = async (req, res) => {
 };
 
 
-export const addPost = async (req, res) => {
+const addPost = async (req, res) => {
     const body = req.body;
     const tokenUserId = req.userId;
 
@@ -95,7 +95,7 @@ export const addPost = async (req, res) => {
 };
 
 
-export const updatePost = async (req, res) => {
+const updatePost = async (req, res) => {
 
     try {
 
@@ -107,7 +107,7 @@ export const updatePost = async (req, res) => {
 };
 
 
-export const deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
     const id = req.params.id;
     const tokenUserId = req.userId;
     try {
@@ -129,3 +129,5 @@ export const deletePost = async (req, res) => {
         res.status(500).json({ message: 'Failed to delete post' })
     }
 };
+
+module.exports = { getPosts, getPost, addPost, updatePost, deletePost }

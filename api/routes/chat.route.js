@@ -1,6 +1,6 @@
-import express from 'express';
-import { getChats, getChat, addChat, readChat } from '../controllers/chat.controller.js';
-import { verifyToken } from '../middleware/verifyToken.js';
+const express = require('express');
+const { getChats, getChat, addChat, readChat } = require('../controllers/chat.controller.js');
+const verifyToken = require('../middleware/verifyToken.js');
 
 const chatRoute = express.Router();
 
@@ -9,4 +9,4 @@ chatRoute.get('/:id', verifyToken, getChat);
 chatRoute.post('/', verifyToken, addChat);
 chatRoute.put('/read/:id', verifyToken, readChat);
 
-export default chatRoute;
+module.exports = chatRoute;

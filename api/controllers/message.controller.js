@@ -1,7 +1,7 @@
-import bcrypt from 'bcrypt';
-import prisma from "../lib/prisma.js";
+const bcrypt = require('bcrypt');
+const prisma = require("../lib/prisma.js");
 
-export const addMessage = async (req, res) => {
+const addMessage = async (req, res) => {
     const tokenUserId = req.userId;
     const chatId = req.params.chatId;
     const text = req.body.text;
@@ -43,4 +43,4 @@ export const addMessage = async (req, res) => {
     }
 };
 
-
+module.exports = addMessage;
