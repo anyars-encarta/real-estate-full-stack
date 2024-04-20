@@ -1,6 +1,6 @@
-import prisma from "../lib/prisma.js";
+const prisma = require("../lib/prisma.js");
 
-export const getChats = async (req, res) => {
+const getChats = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
@@ -37,7 +37,7 @@ export const getChats = async (req, res) => {
     }
 };
 
-export const getChat = async (req, res) => {
+const getChat = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
@@ -74,7 +74,7 @@ export const getChat = async (req, res) => {
     }
 };
 
-export const addChat = async (req, res) => {
+const addChat = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
@@ -90,7 +90,7 @@ export const addChat = async (req, res) => {
     }
 };
 
-export const readChat = async (req, res) => {
+const readChat = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
@@ -113,3 +113,5 @@ export const readChat = async (req, res) => {
         res.status(500).json({ message: 'Failed to read chat' });
     }
 };
+
+module.exports = { getChats, getChat, addChat, readChat }

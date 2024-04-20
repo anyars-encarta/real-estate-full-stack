@@ -1,8 +1,8 @@
-import bcrypt  from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import prisma from '../lib/prisma.js';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const prisma = require('../lib/prisma.js');
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
@@ -27,7 +27,7 @@ export const register = async (req, res) => {
     }
 };
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
     const { username, password } = req.body
 
     try {
@@ -64,6 +64,8 @@ export const login = async (req, res) => {
     }
 };
 
-export const logout = (req, res) => {
+const logout = (req, res) => {
     res.clearCookie("token").status(200).json({message: "Logged out successfully!"});
 };
+
+module.exports = { register, login, logout };

@@ -1,12 +1,12 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 
-export const shouldBeLoggedIn = async (req, res) => {
+const shouldBeLoggedIn = async (req, res) => {
     console.log(req.userId)
 
     res.status(200).json({ message: 'You are Authenticated'})
 }
 
-export const shouldBeAdmin = async (req, res) => {
+const shouldBeAdmin = async (req, res) => {
     const token = req.cookies.token
 
     if(!token) return res.status(401).json({ message: 'Not Authenticated'});
@@ -20,3 +20,5 @@ export const shouldBeAdmin = async (req, res) => {
 
     res.status(200).json({ message: 'You are Authorized'})
 }
+
+module.exports = { shouldBeLoggedIn, shouldBeAdmin };
