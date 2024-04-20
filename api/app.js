@@ -18,10 +18,6 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-    res.send(`✅ Server is running on port ${PORT}!`)
-})
-
 app.use('/api/auth', authRoute)
 app.use('/api/users', userRoute)
 
@@ -30,6 +26,10 @@ app.use('/api/test', testRoute)
 
 app.use('/api/chats', chatRoute)
 app.use('/api/messages', messageRoute)
+
+app.get('/api', (req, res) => {
+    res.send(`✅ Server is running on port ${PORT}!`)
+})
 
 app.listen(PORT, () => {
     console.log(`✅ Server is running on port ${PORT}! Hurrah!!`)
