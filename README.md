@@ -42,7 +42,7 @@
 > Real Estate is a full-stack website that allows users to create posts of real estates. Users could also search for, rent or buy real estates. They could also saved posts to lists. There is also image slider functionality to browse through images of properties. The locations of the properties are shown on a map. The website also features a realtime chat functionality.
 >
 > 
-features a realtime chat functionality.
+features a realtime chat
 
 ## 🛠 Built With <a name="built-with"></a>
 1. React
